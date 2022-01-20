@@ -1,9 +1,13 @@
+const dotenv = require("dotenv")
 import bcrypt from "bcryptjs";
+import { sign, verify } from "jsonwebtoken";
 import { getManager } from "typeorm";
 import { Request, Response } from "express";
-import { RegisterValidation } from "./../validations/register.validation";
 
+import { RegisterValidation } from "./../validations/register.validation";
 import { User } from "../entity/user.entity";
+
+dotenv.config()
 
 export const Register = async (req: Request, res: Response) => {
   const body = req.body;
@@ -42,9 +46,39 @@ export const Login = async (req: Request, res: Response) => {
   }
   const userPassword = await bcrypt.compare(req.body.password, user.password);
   if (!userPassword) {
-    return res.status(400).send({message: "Password or Email is not correct!"});
+    return res
+      .status(400)
+      .send({ message: "Password or Email is not correct!" });
   } else {
-      const {password, ...data } = user
-    return res.status(200).send(data);
+    //  crearte jwt start point
+    const payload = {
+      id: user.id,
+    };
+    const token = sign(payload, process.env.SECRET_KEY);
+
+    // save jwt into the cookie
+    //  cookie is not enabled on frontend side (client) for that we have to add credentials: true inside the app.use(cors{...})
+
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000, //miliseconds
+    });
+    const { password, ...data } = user;
+    return res.status(200).send({ message: "Success!" });
+
+    
   }
+};
+
+// AuthanticatedUser Start Point
+export const AuthanticatedUser = async (req: Request, res: Response) => {
+res.send(req["user"])
+};
+
+export const Logout = async (req: Request, res: Response) => {
+  res.clearCookie("jwt")
+//   res.cookie("jwt", "", { maxAge: 0 });
+  res.send({ message: "Successfully loged out" });
+  console.log(req.cookies);
+  
 };
