@@ -19,7 +19,7 @@ createConnection().then((connection) => {
 
   );
 
-  //Tum routelari index sayfamiza cagiriyoruz.
+  //calling all routes
   routes(app);
 
   app.listen(3000, () => console.log("port started on 3000"));

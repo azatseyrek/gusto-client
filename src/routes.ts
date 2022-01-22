@@ -25,7 +25,7 @@ export const routes = (router: Router) => {
   router.put("/api/user/password", AuthMiddleWare, UpdatePassword);
   router.get("/api/users", AuthMiddleWare, Users);
   router.post("/api/users", AuthMiddleWare, CreateUser);
-  router.post("/api/users/:id", AuthMiddleWare, GetUser);
+  router.get("/api/users/:id", AuthMiddleWare, GetUser);
   router.put("/api/users/:id", AuthMiddleWare, UpdateUser);
   router.delete("/api/users/:id", AuthMiddleWare, DeleteUser);
 };
