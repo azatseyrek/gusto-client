@@ -32,7 +32,7 @@ export const CreateUser = async (req: Request, res: Response) => {
       id: role_id
     }
   });
-  res.send(user);
+  res.status(201).send(user);
 };
 
 export const GetUser = async (req: Request, res: Response) => {
@@ -40,7 +40,7 @@ export const GetUser = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   const { password, ...user } = await repository.findOne(id, {relations:['role']});
-  res.status(201).send(user);
+  res.send(user);
 };
 
 export const UpdateUser = async (req: Request, res: Response) => {
