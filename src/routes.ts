@@ -1,5 +1,11 @@
-import express from "express"
-import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from './controller/product.controller';
+import express from "express";
+import {
+  CreateProduct,
+  DeleteProduct,
+  GetProduct,
+  Products,
+  UpdateProduct,
+} from "./controller/product.controller";
 import { Request, Router } from "express";
 import {
   Login,
@@ -10,7 +16,13 @@ import {
   UpdatePassword,
 } from "./controller/auth.controller";
 import { Permissions } from "./controller/permission.controller";
-import { CreateRole, DeleteRole, GetRole, Roles, UpdateRole } from "./controller/role.controller";
+import {
+  CreateRole,
+  DeleteRole,
+  GetRole,
+  Roles,
+  UpdateRole,
+} from "./controller/role.controller";
 import {
   CreateUser,
   DeleteUser,
@@ -19,8 +31,8 @@ import {
   Users,
 } from "./controller/user.controller";
 import { AuthMiddleWare } from "./middleware/auth.middleware";
-import { Upload } from './controller/image.controller';
-
+import { Upload } from "./controller/image.controller";
+import { Export, Orders } from "./controller/order.controller";
 
 export const routes = (router: Router) => {
   router.post("/api/register", Register);
@@ -41,9 +53,9 @@ export const routes = (router: Router) => {
   // Permissions
 
   router.get("/api/permissions", AuthMiddleWare, Permissions);
-  
+
   // Role
-  
+
   router.get("/api/roles", AuthMiddleWare, Roles);
   router.post("/api/roles", AuthMiddleWare, CreateRole);
   router.get("/api/roles/:id", AuthMiddleWare, GetRole);
@@ -58,11 +70,13 @@ export const routes = (router: Router) => {
   router.put("/api/products/:id", AuthMiddleWare, UpdateProduct);
   router.delete("/api/products/:id", AuthMiddleWare, DeleteProduct);
 
+  // Upload(image)
+  router.post("/api/upload", AuthMiddleWare, Upload);
 
-// Upload(image)
-router.post("/api/upload", AuthMiddleWare,  Upload)
+  // definening static file path
+  router.use("/api/uploads", express.static("./uploads"));
 
-// definening static file path
-router.use('/api/uploads', express.static('./uploads'))
-
-}
+  // Order
+  router.get("/api/orders", AuthMiddleWare, Orders)
+  router.post("/api/export", AuthMiddleWare, Export)
+};
