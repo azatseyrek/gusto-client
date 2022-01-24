@@ -1,5 +1,6 @@
+import express from "express"
 import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from './controller/product.controller';
-import { Router } from "express";
+import { Request, Router } from "express";
 import {
   Login,
   Register,
@@ -18,6 +19,8 @@ import {
   Users,
 } from "./controller/user.controller";
 import { AuthMiddleWare } from "./middleware/auth.middleware";
+import { Upload } from './controller/image.controller';
+
 
 export const routes = (router: Router) => {
   router.post("/api/register", Register);
@@ -55,4 +58,11 @@ export const routes = (router: Router) => {
   router.put("/api/products/:id", AuthMiddleWare, UpdateProduct);
   router.delete("/api/products/:id", AuthMiddleWare, DeleteProduct);
 
-};
+
+// Upload(image)
+router.post("/api/upload", AuthMiddleWare,  Upload)
+
+// definening static file path
+router.use('/api/uploads', express.static('./uploads'))
+
+}
