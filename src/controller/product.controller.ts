@@ -37,7 +37,7 @@ export const CreateProduct = async (req: Request, res: Response) => {
 };
 
 export const GetProduct = async (req: Request, res: Response) => {
-  const repository = await getManager().getRepository(Product);
+  const repository =  getManager().getRepository(Product);
   const id = req.params.id;
 
   const product = await repository.findOne(id);
