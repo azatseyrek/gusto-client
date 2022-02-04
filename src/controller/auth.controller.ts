@@ -13,7 +13,7 @@ export const Register = async (req: Request, res: Response) => {
   const body = req.body;
 
   // validation islemimizi bodyden gelen bilgilerle belirledigimiz kurallara uyup uymadigini kontrol ediyoruz. {error} yerine validation da yazabilirdik ancak destructing uygulayip sadece hata olma durumunu aliyoruz bu sekilde.
-  const { error } = RegisterValidation.validate(body); // it returns a boolean
+  const { error } = RegisterValidation.validate(body);
 
   if (error) {
     return res.status(400).send(error.details);
@@ -24,7 +24,7 @@ export const Register = async (req: Request, res: Response) => {
     });
   }
 
-  //   entity icerisinde user schema mizi olusturduktan sonra verileri Registerdan cekebilmek icin getManager().getRepository() ile fonksiyonu schemamiza ulasiyoruz.
+  //   entity icerisinde user schema mizi olusturduktan sonra verileri Registerdan cekebilmek icin getManager fonksiyonu schemamiza ulasiyoruz.
   const repository = getManager().getRepository(User);
   const { password, ...user } = await repository.save({
     first_name: body.first_name,
@@ -64,7 +64,7 @@ export const Login = async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 1000, //miliseconds
     });
     const { password, ...data } = user;
-    return res.status(200).send(data);
+    return res.status(200).send({ message: "Success!" });
   }
 };
 
