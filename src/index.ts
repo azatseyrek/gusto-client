@@ -3,7 +3,6 @@ import {createConnection} from "typeorm";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-
 import { routes } from "./routes";
 
 createConnection().then((connection) => {

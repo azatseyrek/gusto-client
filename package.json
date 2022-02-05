@@ -1,19 +1,18 @@
 {
-  "name": "retorm",
+  "name": "gusto-azatseyrek",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.ts"
   },
-  "repository": {
+   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azatseyrek/dashboard-ts-express-typorm-sql.git"
+    "url": "git+https://github.com/azatseyrek/gusto-azatseyrek.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Azat Seyrek",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/azatseyrek/dashboard-ts-express-typorm-sql/issues"
+    "url": "https://github.com/azatseyrek/gusto-azatseyrek/issues"
   },
 
   "description": "",
