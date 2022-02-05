@@ -1,11 +1,9 @@
 import {
   Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Role } from "./role.entity";
+
 
 @Entity()
 export class User {
@@ -19,8 +17,9 @@ export class User {
   email: string;
   @Column()
   password: string;
+  @Column('boolean', {default: true})
+  shareMovieList : boolean
+  @Column('boolean', {default: false})
+  shareActorList : boolean
 
-  @ManyToOne(() => Role)
-  @JoinColumn({ name: "role_id" })
-  role: Role;
 }

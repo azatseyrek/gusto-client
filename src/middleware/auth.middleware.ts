@@ -23,7 +23,7 @@ export const AuthMiddleWare = async (
 
     const { password, ...user } = await repository.findOne(payload.id);
 
-    // req.user = user without typescript it will work. ts doesnt allow to use this syntax
+    // req.user = user -------> without typescript it will work. ts doesnt allow to use this syntax
 
     req["user"] = user;
 

@@ -18,13 +18,8 @@ export const Register = async (req: Request, res: Response) => {
   if (error) {
     return res.status(400).send(error.details);
   }
-  if (body.password !== body.password_confirm) {
-    return res.status(400).send({
-      message: "Password do not match",
-    });
-  }
 
-  //   entity icerisinde user schema mizi olusturduktan sonra verileri Registerdan cekebilmek icin getManager fonksiyonu schemamiza ulasiyoruz.
+
   const repository = getManager().getRepository(User);
   const { password, ...user } = await repository.save({
     first_name: body.first_name,
@@ -64,7 +59,7 @@ export const Login = async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 1000, //miliseconds
     });
     const { password, ...data } = user;
-    return res.status(200).send({ message: "Success!" });
+    return res.status(200).send({ message: "success" });
   }
 };
 
@@ -78,7 +73,7 @@ export const Logout = async (req: Request, res: Response) => {
   res.clearCookie("jwt");
   //   res.cookie("jwt", "", { maxAge: 0 });
   res.send({ message: "Successfully loged out" });
-//   console.log(req.cookies);
+  //   console.log(req.cookies);
 };
 
 export const UpdateInfo = async (req: Request, res: Response) => {
@@ -88,13 +83,13 @@ export const UpdateInfo = async (req: Request, res: Response) => {
 
   await repository.update(user.id, req.body);
 
-  const {password, ...data} = await repository.findOne(user.id)
+  const { password, ...data } = await repository.findOne(user.id)
 
   res.send(data)
 };
 
 export const UpdatePassword = async (req: Request, res: Response) => {
-    const user = req["user"];
+  const user = req["user"];
 
 
   if (req.body.password !== req.body.password_confirm) {
@@ -104,9 +99,9 @@ export const UpdatePassword = async (req: Request, res: Response) => {
   }
   const repository = getManager().getRepository(User);
   await repository.update(user.id, {
-      password: await bcrypt.hash(req.body.password, 8)
+    password: await bcrypt.hash(req.body.password, 8)
   })
-  const {password, ...data} = user;
+  const { password, ...data } = user;
 
   res.send(data);
 
