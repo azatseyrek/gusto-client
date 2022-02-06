@@ -1,8 +1,14 @@
 import {
   Column,
   Entity,
+  JoinColumn,
+  OneToOne,
+  // JoinColumn,
+  // OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { MovieList } from "./movieList.entity";
+
 
 
 @Entity()
@@ -21,5 +27,13 @@ export class User {
   shareMovieList : boolean
   @Column('boolean', {default: false})
   shareActorList : boolean
+  
+
+  // @OneToOne(() => MovieList)
+  //   @JoinColumn()
+  //   movielist: MovieList;
+ 
+
+  
 
 }

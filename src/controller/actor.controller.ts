@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { getManager } from "typeorm";
 
 
+
 export const Actors = async (req: Request, res: Response) => {
   const repository = getManager().getRepository(Actor);
 
@@ -12,28 +13,20 @@ export const Actors = async (req: Request, res: Response) => {
 };
 
 export const CreateActor = async (req: Request, res: Response) => {
+  const body = req.body
 
-const body = req.body
   const repository = getManager().getRepository(Actor);
+
 
   const actor = await repository.save({
     ...body,
-    owner_id : req["user"].id,
-
+    ownerId : req["user"].id
   });
   res.status(201).send(actor);
 };
 
-export const GetActor = async (req: Request, res: Response) => {
-  const repository = await getManager().getRepository(Actor);
-  const id = req.params.id;
-
-  const actor = await repository.findOne(id)
-  res.send(actor);
-};
-
 export const UpdateActor = async (req: Request, res: Response) => {
-const {owner_id, ...body} = req.body
+  const {owner_id, ...body} = req.body
   const repository = getManager().getRepository(Actor);
   const id = req.params.id;
 

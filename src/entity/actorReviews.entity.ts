@@ -4,12 +4,17 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
+
 @Entity()
-export class Actor {
+export class ActorReviews {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  actor_name: string;
+  comment: string;
   @Column()
-  ownerId: number
+  owner_id?: number
+  @Column()
+  commenterId: number
 }
+
+
