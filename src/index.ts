@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import { routes } from "./routes";
+import { Movie } from "./entity/movie.entity";
 
 
 createConnection().then(async(connection) => {
@@ -14,7 +15,7 @@ createConnection().then(async(connection) => {
   app.use(
     cors({
       credentials: true,
-      origin: ["http://localhost:8000"],
+      origin: "http://localhost:3000",
     })
   )
 
@@ -44,9 +45,10 @@ createConnection().then(async(connection) => {
   // user.movielist = movieList
   // await connection.manager.save(user);
   
-  // const userRepository = getManager().getRepository(User);
-  // const user = await userRepository.findOne(14, {relations: ["movielist"]})
-  // console.log(user.movielist.id);
+  // const userRepository = getManager().getRepository(Movie);
+  // // const ownerId = 19
+  // const myMovies = await userRepository.find({ownerId:21})
+  // console.log(myMovies)
 
 
   
@@ -61,7 +63,7 @@ createConnection().then(async(connection) => {
   //calling all routes
   routes(app);
 
-  app.listen(3000, () => console.log("port started on 3000"));
+  app.listen(4000, () => console.log("port started on 4000"));
 
 });
 

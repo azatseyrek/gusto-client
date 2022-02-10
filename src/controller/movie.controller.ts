@@ -22,19 +22,25 @@ export const CreateMovie = async (req: Request, res: Response) => {
     ...body,
     ownerId : req["user"].id
   });
-  res.status(201).send(movie);
+  res.status(201).send("success");
 };
 
-// export const GetMovie = async (req: Request, res: Response) => {
-//   const repository = await getManager().getRepository(Movie);
-//   const id = req.params.id;
+export const GetMyMovies = async (req: Request, res: Response) => {
+  
+  const myMoviesRepository = getManager().getRepository(Movie);
 
-//   const movie = await repository.findOne(id)
-//   res.send(movie);
-// };
+  const myMovies = await myMoviesRepository.find({ownerId:req["user"].id}&&{share:false})
+res.status(201).send(myMovies)
+}
+
+export const GetSharedMovies = async (req: Request, res:Response)=>{
+  const sharedMoviesRepository = getManager().getRepository(Movie);
+  const sharedMovies = await sharedMoviesRepository.find({share:true})
+  res.status(201).send(sharedMovies)
+}
 
 export const UpdateMovie = async (req: Request, res: Response) => {
-  const {owner_id, ...body} = req.body
+  const {ownerId, ...body} = req.body
   const repository = getManager().getRepository(Movie);
   const id = req.params.id;
 

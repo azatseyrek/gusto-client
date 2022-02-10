@@ -12,5 +12,9 @@ export class Movie {
   movie_name: string;
   @Column()
   ownerId: number
+  @Column()
+  ownerName: string
+  @Column('boolean', {default: false})
+  share : boolean
   
 }

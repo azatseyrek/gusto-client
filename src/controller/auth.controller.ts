@@ -28,7 +28,7 @@ export const Register = async (req: Request, res: Response) => {
     password: await bcrypt.hash(body.password, 8),
   });
 
-  res.send(user);
+  res.send("success");
 };
 
 export const Login = async (req: Request, res: Response) => {
@@ -59,7 +59,7 @@ export const Login = async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 1000, //miliseconds
     });
     const { password, ...data } = user;
-    return res.status(200).send({ message: "success" });
+    res.status(200).send("success");
   }
 };
 
@@ -72,7 +72,7 @@ export const AuthanticatedUser = async (req: Request, res: Response) => {
 export const Logout = async (req: Request, res: Response) => {
   res.clearCookie("jwt");
   //   res.cookie("jwt", "", { maxAge: 0 });
-  res.send({ message: "Successfully loged out" });
+  res.send("success");
   //   console.log(req.cookies);
 };
 

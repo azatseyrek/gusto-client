@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon src/index.ts"
   },
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/azatseyrek/gusto-azatseyrek.git"
   },
@@ -14,7 +14,6 @@
   "bugs": {
     "url": "https://github.com/azatseyrek/gusto-azatseyrek/issues"
   },
-
   "description": "",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

@@ -8,12 +8,12 @@ export const Users = async (req: Request, res: Response) => {
   const repository = getManager().getRepository(User);
   const users = await repository.find({});
 
-  const data = await users.map((info) => {
+  const user = await users.map((info) => {
     const { password, ...userInfo } = info;
     return userInfo;
   });
 
-  res.send(data);
+  res.send(user);
 };
 
 export const CreateUser = async (req: Request, res: Response) => {
@@ -41,8 +41,8 @@ export const GetUser = async (req: Request, res: Response) => {
 };
 
 export const UpdateUser = async (req: Request, res: Response) => {
-  //update without password
-  const { ...body } = req.body;
+
+  const {...body } = req.body;
   const repository = getManager().getRepository(User);
   const id = req.params.id;
 
@@ -51,7 +51,7 @@ export const UpdateUser = async (req: Request, res: Response) => {
     
   });
 
-  const { password, ...user } = await repository.findOne(id);
+  const user = await repository.findOne(id);
 
   res.status(202).send(user);
 };

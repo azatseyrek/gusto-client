@@ -12,4 +12,9 @@ export class Actor {
   actor_name: string;
   @Column()
   ownerId: number
+  @Column()
+  ownerName: string
+  @Column('boolean', {default: false})
+  share : boolean
+  
 }

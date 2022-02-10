@@ -22,12 +22,27 @@ export const CreateActor = async (req: Request, res: Response) => {
     ...body,
     ownerId : req["user"].id
   });
-  res.status(201).send(actor);
+  res.status(201).send("success");
 };
 
+
+export const GetMyActors = async (req: Request, res: Response) => {
+  
+  const myActorsRepository = getManager().getRepository(Actor);
+
+  const myActors = await myActorsRepository.find({ownerId:req["user"].id}&&{share:false})
+res.status(201).send(myActors)
+}
+
+export const GetSharedActors = async (req: Request, res:Response)=>{
+  const sharedActorsRepository = getManager().getRepository(Actor);
+  const sharedActors = await sharedActorsRepository.find({share:true})
+  res.status(201).send(sharedActors)
+}
+
 export const UpdateActor = async (req: Request, res: Response) => {
-  const {owner_id, ...body} = req.body
   const repository = getManager().getRepository(Actor);
+  const {ownerId, ...body} = req.body
   const id = req.params.id;
 
   await repository.update(id, {
