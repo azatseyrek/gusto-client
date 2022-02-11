@@ -8,7 +8,7 @@ export default function Login() {
 
   const login =async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:4000/login", {
+    await axios.post("http://localhost:4000/login", {
       email,
       password
     }, {

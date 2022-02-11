@@ -16,5 +16,8 @@ export class Actor {
   ownerName: string
   @Column('boolean', {default: false})
   share : boolean
+  @Column({default: 0})
+  likeCount: number
+  
   
 }

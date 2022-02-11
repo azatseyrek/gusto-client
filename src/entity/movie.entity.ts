@@ -16,5 +16,9 @@ export class Movie {
   ownerName: string
   @Column('boolean', {default: false})
   share : boolean
+  @Column({default: 1})
+  likeCount: number
+  @Column({default: 0})
+  likes: string
   
 }

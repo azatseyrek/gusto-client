@@ -24,6 +24,7 @@ const ActorList = () => {
       {sharedActors.map((data) => (
         <SharedActorCard
           key={data.id}
+          id={data.id}
           actor_name={data.actor_name}
           owner_name={data.ownerName}
         />

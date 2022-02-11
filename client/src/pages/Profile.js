@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ProfileActorCard from "../components/ProfileActorCard";
 import ProfileMovieCard from "../components/ProfileMovieCard";
 import { myContext } from "./Context";
@@ -7,19 +7,41 @@ import { myContext } from "./Context";
 const Profile = () => {
   const user = useContext(myContext);
 
-  const [movie, setMovie] = useState("");
-  const [myMovies, setMyMovies] = useState([]);
+  const movieInputRef = useRef();
+  const actorInputRef = useRef();
 
-  const [actor, setActor] = useState("");
+  const [myMovies, setMyMovies] = useState([]);
   const [myActors, setMyActors] = useState([]);
 
-  const addMovie = (e) => {
+  const getMyMovies = async () => {
+    await axios
+      .get("http://localhost:4000/mymovies", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setMyMovies(res.data);
+        movieInputRef.current.value = "";
+      });
+  };
+  const getMyActors = async () => {
+    await axios
+      .get("http://localhost:4000/myactors", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setMyActors(res.data);
+        actorInputRef.current.value = "";
+      });
+  };
+
+  const addMovie = async (e) => {
     e.preventDefault();
-    axios
+
+    await axios
       .post(
         "http://localhost:4000/movies",
         {
-          movie_name: movie,
+          movie_name: movieInputRef.current.value,
           ownerName: user.first_name,
         },
         {
@@ -29,8 +51,7 @@ const Profile = () => {
       .then(
         (res) => {
           if (res.data === "success") {
-            window.location.href = "/profile";
-            setMovie("");
+            getMyMovies();
           }
         },
         () => {
@@ -39,13 +60,14 @@ const Profile = () => {
       );
   };
 
-  const addActor = (e) => {
+  const addActor = async (e) => {
     e.preventDefault();
-    axios
+
+    await axios
       .post(
         "http://localhost:4000/actors",
         {
-          actor_name: actor,
+          actor_name: actorInputRef.current.value,
           ownerName: user.first_name,
         },
         {
@@ -55,8 +77,7 @@ const Profile = () => {
       .then(
         (res) => {
           if (res.data === "success") {
-            window.location.href = "/profile";
-            setMovie("");
+            getMyActors()
           }
         },
         () => {
@@ -66,48 +87,27 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    const getMyMovies = () => {
-      axios
-        .get("http://localhost:4000/mymovies", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setMyMovies(res.data);
-        });
-    };
-
     getMyMovies();
+    
+
   }, []);
 
   useEffect(() => {
-    const getMyActors = () => {
-      axios
-        .get("http://localhost:4000/myactors", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setMyActors(res.data);
-        });
-    };
-
     getMyActors();
   }, []);
 
   return (
     <div className="profile_container">
       <div>
-        <form className="addForm" onSubmit={addMovie}>
+        <form className="addForm">
           <div>
             <h2>Add Movie</h2>
           </div>
-          <input
-            type="text"
-            name="movie"
-            onChange={(e) => setMovie(e.target.value)}
-            required
-          />
+          <input ref={movieInputRef} type="text" name="movie" required />
 
-          <button className="formBtn">Add</button>
+          <button onClick={addMovie} className="formBtn">
+            Add
+          </button>
         </form>
       </div>
 
@@ -127,12 +127,7 @@ const Profile = () => {
           <div>
             <h2>Add Actor</h2>
           </div>
-          <input
-            type="text"
-            name="actor"
-            onChange={(e) => setActor(e.target.value)}
-            required
-          />
+          <input ref={actorInputRef} type="text" name="actor" required />
 
           <button className="formBtn">Add</button>
         </form>

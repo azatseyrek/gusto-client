@@ -4,11 +4,10 @@ import { MdOutlineInsertComment } from "react-icons/md";
 
 const SharedActorCard = (props) => {
   return (
-    <>
+
       <ul className="cards">
         <li className="sharedCard">
           <img src={require("../images/film.png")} alt="movielogo" />
-
           <h6>{props.owner_name} shared an actor</h6>
           <hr />
           <h4>{props.actor_name}</h4>
@@ -22,7 +21,7 @@ const SharedActorCard = (props) => {
           </div>
         </li>
       </ul>
-    </>
+
   );
 };
 

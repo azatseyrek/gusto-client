@@ -19,47 +19,54 @@ export const Register = async (req: Request, res: Response) => {
     return res.status(400).send(error.details);
   }
 
+  try {
+    const repository = getManager().getRepository(User);
+    const { password, ...user } = await repository.save({
+      first_name: body.first_name,
+      last_name: body.last_name,
+      email: body.email,
+      password: await bcrypt.hash(body.password, 8),
+    });
 
-  const repository = getManager().getRepository(User);
-  const { password, ...user } = await repository.save({
-    first_name: body.first_name,
-    last_name: body.last_name,
-    email: body.email,
-    password: await bcrypt.hash(body.password, 8),
-  });
-
-  res.send("success");
+    res.send("success");
+  } catch (err) {
+    res.send(err)
+  }
 };
 
 export const Login = async (req: Request, res: Response) => {
-  const repository = getManager().getRepository(User);
-  const user = await repository.findOne({ email: req.body.email });
-  if (!user) {
-    return res.status(404).send({
-      message: "Password or Email is not correct!",
-    });
-  }
-  const userPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!userPassword) {
-    return res
-      .status(400)
-      .send({ message: "Password or Email is not correct!" });
-  } else {
-    //  crearte jwt start point
-    const payload = {
-      id: user.id,
-    };
-    const token = sign(payload, process.env.SECRET_KEY);
+  try {
+    const repository = getManager().getRepository(User);
+    const user = await repository.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(404).send({
+        message: "Password or Email is not correct!",
+      });
+    }
+    const userPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!userPassword) {
+      return res
+        .status(400)
+        .send({ message: "Password or Email is not correct!" });
+    } else {
+      //  crearte jwt start point
+      const payload = {
+        id: user.id,
+      };
+      const token = sign(payload, process.env.SECRET_KEY);
 
-    // save jwt into the cookie
-    //  cookie is not enabled on frontend side (client) for that we have to add credentials: true inside the app.use(cors{...})
+      // save jwt into the cookie
+      //  cookie is not enabled on frontend side (client) for that we have to add credentials: true inside the app.use(cors{...})
 
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 1000, //miliseconds
-    });
-    const { password, ...data } = user;
-    res.status(200).send("success");
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000, //miliseconds
+      });
+      const { password, ...data } = user;
+      res.status(200).send("success");
+    }
+  } catch (err) {
+    res.status(400).send({ message: "Password or Email is not correct!" })
   }
 };
 
@@ -69,16 +76,9 @@ export const AuthanticatedUser = async (req: Request, res: Response) => {
   res.send(user);
 };
 
-export const Logout = async (req: Request, res: Response) => {
-  res.clearCookie("jwt");
-  //   res.cookie("jwt", "", { maxAge: 0 });
-  res.send("success");
-  //   console.log(req.cookies);
-};
-
 export const UpdateInfo = async (req: Request, res: Response) => {
   const user = req["user"];
-
+try {
   const repository = getManager().getRepository(User);
 
   await repository.update(user.id, req.body);
@@ -86,24 +86,17 @@ export const UpdateInfo = async (req: Request, res: Response) => {
   const { password, ...data } = await repository.findOne(user.id)
 
   res.send(data)
+} catch (err) {
+  res.send(err)
+}
 };
 
-export const UpdatePassword = async (req: Request, res: Response) => {
-  const user = req["user"];
-
-
-  if (req.body.password !== req.body.password_confirm) {
-    return res.status(400).send({
-      message: "Password don not match",
-    });
+export const Logout = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie("jwt");
+    res.send("success");
+  } catch (err) {
+    res.send(err)
   }
-  const repository = getManager().getRepository(User);
-  await repository.update(user.id, {
-    password: await bcrypt.hash(req.body.password, 8)
-  })
-  const { password, ...data } = user;
+};
 
-  res.send(data);
-
-
-}

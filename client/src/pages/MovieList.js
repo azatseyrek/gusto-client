@@ -6,8 +6,8 @@ const MovieList = () => {
   const [sharedMovies, setSharedMovies] = useState([]);
 
   useEffect(() => {
-    const getSharedMovies = () => {
-      axios
+    const getSharedMovies = async () => {
+     await axios
         .get("http://localhost:4000/sharedmovies", {
           withCredentials: true,
         })
@@ -16,6 +16,7 @@ const MovieList = () => {
         });
     };
     getSharedMovies();
+    console.log();
   }, []);
 
   return (
@@ -23,8 +24,10 @@ const MovieList = () => {
       {sharedMovies.map((data) => (
         <SharedMovieCard
           key={data.id}
+          id={data.id}
           movie_name={data.movie_name}
           owner_name={data.ownerName}
+          likeCount = {data.likeCount}
         />
       ))}
     </div>

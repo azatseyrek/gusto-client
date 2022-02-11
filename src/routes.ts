@@ -1,35 +1,26 @@
 import { Router } from "express";
-import {
-  Login,
-  Register,
-  AuthanticatedUser,
-  Logout,
-  UpdateInfo,
-  UpdatePassword,
-} from "./controller/auth.controller";
-import {
-  CreateUser,
-  DeleteUser,
-  GetUser,
-  UpdateUser,
-  Users,
-} from "./controller/user.controller";
+
+import { Login, Register, AuthanticatedUser, Logout, UpdateInfo, } from "./controller/auth.controller";
+import { CreateUser, DeleteUser, GetUser, UpdateUser, Users } from "./controller/user.controller";
 
 import { AuthMiddleWare } from "./middleware/auth.middleware";
-import { ActorReview, CreateActorReview, DeleteActorReview, GetActorReview } from './controller/actorReviews.controller';
-import { CreateActor, DeleteActor, Actors, UpdateActor, GetMyActors, GetSharedActors } from './controller/actor.controller';
-import { CreateMovie, DeleteMovie, GetMyMovies, GetSharedMovies, Movies, UpdateMovie } from './controller/movie.controller';
-import { CreateMovieReview, DeleteMovieReview, GetMovieReview, MovieReview, UpdateMovieReview } from './controller/movieReviews.controller';
 
-// Login & Register
+import { CreateActor, DeleteActor, Actors, UpdateActor, GetMyActors, GetSharedActors } from './controller/actor.controller';
+import { CreateMovie, DeleteMovie, GetMyMovies, GetSharedMovies, Movies, UpdateMovie} from './controller/movie.controller';
+import { AddLike} from "./controller/like.controller";
+
+
 export const routes = (router: Router) => {
-  router.post("/register", Register);
+  // Login & Register & Logout
   router.post("/login", Login);
+  router.post("/register", Register);
+  router.get("/logout", AuthMiddleWare, Logout);
+
+  // User
 
   router.get("/user", AuthMiddleWare, AuthanticatedUser);
-  router.get("/logout", AuthMiddleWare, Logout);
   router.put("/user/info", AuthMiddleWare, UpdateInfo);
-  router.put("/user/password", AuthMiddleWare, UpdatePassword);
+
 
   // Users
 
@@ -57,18 +48,11 @@ export const routes = (router: Router) => {
   router.delete("/movies/:id", AuthMiddleWare, DeleteMovie);
   router.get("/sharedmovies", AuthMiddleWare, GetSharedMovies);
 
-  // MovieReviews
+  // Like
+  router.post("/addlike", AuthMiddleWare, AddLike);
 
-  router.get("/moviesReview", AuthMiddleWare, MovieReview);
-  router.post("/movieReview", AuthMiddleWare, CreateMovieReview);
-  router.get("/movieReview/:id", AuthMiddleWare, GetMovieReview);
-  router.delete("/movieReview/:id", AuthMiddleWare, DeleteMovieReview);
 
-  // ActorReviews
 
-  router.get("/actorReviews", AuthMiddleWare, ActorReview);
-  router.post("/actorReview", AuthMiddleWare, CreateActorReview);
-  router.get("/actorReview/:id", AuthMiddleWare, GetActorReview);
-  router.delete("/actorReview/:id", AuthMiddleWare, DeleteActorReview);
+
 
 };
