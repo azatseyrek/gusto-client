@@ -1,15 +1,8 @@
 import {
   Column,
   Entity,
-  JoinColumn,
-  OneToOne,
-  // JoinColumn,
-  // OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-// import { MovieList } from "./movieList.entity";
-
-
 
 @Entity()
 export class User {
@@ -28,13 +21,4 @@ export class User {
   @Column('boolean', {default: false})
   shareActorList : boolean
   
-
-  // from movieList
-   // @OneToMany(() => Movie, movie => movie.movielist)
-    // @JoinColumn()
-    // movies: Movie[];
- 
-
-  
-
 }

@@ -5,9 +5,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineInsertComment } from "react-icons/md";
 import { myContext } from "../pages/Context";
-import Modal from "./Modal";
+import MovieModal from "./MovieModal";
 
-const SharedMovieCard = (props) => {
+const SharedMovieCard = ({id , owner_name, movie_name, likeCount}) => {
   const user = useContext(myContext)
   const [openModal, setOpenModal] = useState(false)
 
@@ -21,7 +21,7 @@ const SharedMovieCard = (props) => {
         {
 
           user_id : user.id,
-          movie_id: props.id
+          movie_id: id  
 
         },
         {
@@ -40,19 +40,19 @@ const SharedMovieCard = (props) => {
     <ul className="cards">
       <li className="sharedCard">
         <img src={require("../images/film.png")} alt="movielogo" />
-        <h6>{props.owner_name} shared a movie</h6>
+        <h6>{owner_name} shared a movie</h6>
         <hr />
-        <h4>{props.movie_name}</h4>
+        <h4>{movie_name}</h4>
         <div className="cardBtn">
         
           <button onClick={like}>
-            <FcLike /> <span>{props.likeCount}</span>{" "}
+            <FcLike /> <span>{likeCount}</span>{" "}
           </button>
          
           <button className="openModalBtn" onClick={()=>{setOpenModal(true)}}>
             <MdOutlineInsertComment />
           </button>
-       {openModal && <Modal id={props.id} closeModal={setOpenModal}/>}
+       {openModal && <MovieModal id={id} closeModal={setOpenModal}/>}
         </div>
       </li>
     </ul>

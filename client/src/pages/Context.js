@@ -5,10 +5,15 @@ export const myContext = createContext({})
 
 const Context = (props) => {
     const [user, setUser] = useState()
-    useEffect(()=> {
-        Axios.get("http://localhost:4000/user", {withCredentials:true}).then(res => {
-            setUser(res.data)
-        })
+    useEffect(async ()=> {
+        try {
+            
+            await Axios.get("http://localhost:4000/user", {withCredentials:true}).then(res => {
+                setUser(res.data)
+            })
+        } catch (error) {
+            console.log(error);
+        }
     },[])
 
 

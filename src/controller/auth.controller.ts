@@ -12,11 +12,12 @@ dotenv.config();
 export const Register = async (req: Request, res: Response) => {
   const body = req.body;
 
-  // validation islemimizi bodyden gelen bilgilerle belirledigimiz kurallara uyup uymadigini kontrol ediyoruz. {error} yerine validation da yazabilirdik ancak destructing uygulayip sadece hata olma durumunu aliyoruz bu sekilde.
+// check validation error
   const { error } = RegisterValidation.validate(body);
 
   if (error) {
-    return res.status(400).send(error.details);
+
+    return res.send(error.details[0].message)
   }
 
   try {
@@ -28,7 +29,7 @@ export const Register = async (req: Request, res: Response) => {
       password: await bcrypt.hash(body.password, 8),
     });
 
-    res.send("success");
+    res.status(201).send("success");
   } catch (err) {
     res.send(err)
   }
@@ -85,7 +86,7 @@ try {
 
   const { password, ...data } = await repository.findOne(user.id)
 
-  res.send(data)
+  res.status(201).send(data)
 } catch (err) {
   res.send(err)
 }

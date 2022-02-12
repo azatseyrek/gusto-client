@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../styles/modal.css";
-import ModalCard from "./ModalCard";
+import MovieModalCard from "./MovieModalCard";
 
-function Modal({ closeModal, id }) {
+function MovieModal({ closeModal, id }) {
   const [comment, setComment] = useState("");
   const [movieComment, setMovieComment] = useState([]);
 
@@ -99,11 +99,11 @@ function Modal({ closeModal, id }) {
         </div>
 
         <div className="body">
-          <ModalCard movieComment={movieComment} id={id} />
+          <MovieModalCard movieComment={movieComment} id={id} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Modal;
+export default MovieModal;

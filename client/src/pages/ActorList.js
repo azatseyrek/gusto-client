@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SharedActorCard from "../components/SharedActorCard";
 
-
 const ActorList = () => {
   const [sharedActors, setSharedActors] = useState([]);
 
@@ -27,6 +26,7 @@ const ActorList = () => {
           id={data.id}
           actor_name={data.actor_name}
           owner_name={data.ownerName}
+          likeCount={data.likeCount}
         />
       ))}
     </div>
@@ -34,6 +34,3 @@ const ActorList = () => {
 };
 
 export default ActorList;
-
-// 7e1a1504
-// http://www.omdbapi.com/apikey.aspx?VERIFYKEY=8bbcbb5a-ac43-4b4e-8a87-4bf750752c8e

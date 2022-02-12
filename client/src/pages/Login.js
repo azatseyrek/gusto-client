@@ -4,6 +4,7 @@ import axios from 'axios';
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
 
   const login =async (e) => {
@@ -16,10 +17,11 @@ export default function Login() {
     }).then((res) => {
       if (res.data === "success") {
         window.location.href = "/"
-
+      }else {
+        console.log(res);
       }
-    }, () => {
-      console.log("Failure");
+    }, (error) => {
+      setError("Password or Email is not correct!")
     })
   }
 
@@ -31,10 +33,9 @@ export default function Login() {
     <h2>Log in</h2>
     <label >Email</label>
     <input type="text" name="email" onChange={e => setEmail(e.target.value)} required/>
-    <div className="email error"></div>
     <label >Password</label>
     <input type="password" name="password" onChange={e => setPassword(e.target.value)} required/>
-    <div className="password error"></div>
+    <div className="error">{error}</div>
     <button >Login</button>
 </form>
     </div>

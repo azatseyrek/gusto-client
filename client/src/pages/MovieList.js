@@ -7,7 +7,7 @@ const MovieList = () => {
 
   useEffect(() => {
     const getSharedMovies = async () => {
-     await axios
+      await axios
         .get("http://localhost:4000/sharedmovies", {
           withCredentials: true,
         })
@@ -16,10 +16,7 @@ const MovieList = () => {
         });
     };
     getSharedMovies();
-
   }, []);
-
-
 
   return (
     <div className="cards_container">
@@ -29,7 +26,7 @@ const MovieList = () => {
           id={data.id}
           movie_name={data.movie_name}
           owner_name={data.ownerName}
-          likeCount = {data.likeCount}
+          likeCount={data.likeCount}
         />
       ))}
     </div>

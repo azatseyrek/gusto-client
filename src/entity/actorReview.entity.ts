@@ -6,13 +6,13 @@ import {
 import { Movie } from "./movie.entity";
   
   @Entity()
-  export class MovieReviev {
+  export class ActorReviev {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
     review: string
     @Column()
-    movieId: number
+    actorId: number
     @Column()
     commenterName: string
     @Column()

@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/modal.css";
 
-const ModalCard = ({movieComment, id}) => {
+const MovieModalCard = ({movieComment, id}) => {
   return (
     <div className='commentContainer'>
 
@@ -16,4 +16,4 @@ const ModalCard = ({movieComment, id}) => {
   )
 }
 
-export default ModalCard
+export default MovieModalCard

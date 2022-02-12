@@ -6,12 +6,13 @@ export default function Register() {
   const [last_name, setLast_name] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
 
-  const register = (e) => {
+  const register = async (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:4000/register", {
+    await axios.post("http://localhost:4000/register", {
       first_name,
       last_name,
       email,
@@ -21,11 +22,20 @@ export default function Register() {
     }).then((res) => {
       if (res.data === "success") {
         window.location.href = "/login"
+        console.log(res);
+      } if(res) {
+        console.log(res.data);
+        setError(res.data)
       }
-    }, () => {
-      console.log("Failure");
+    }, (error) => {
+      console.log(error);
       
     })
+
+
+
+
+
   }
 
   return (
@@ -38,10 +48,9 @@ export default function Register() {
     <input type="text" name="surname"  onChange={e => setLast_name(e.target.value)}required />
     <label htmlFor="email">Email</label>
     <input type="text" name="email"  onChange={e => setEmail(e.target.value)} required />
-    <div className="email error"></div>
     <label htmlFor="password">Password</label>
     <input type="password" name="password"  onChange={e => setPassword(e.target.value)} required />
-    <div className="password error"></div>
+    <div className="error">{error}</div>
     <button>Sign up</button>
   </form>
 </div>

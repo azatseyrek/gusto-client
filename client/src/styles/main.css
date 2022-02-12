@@ -34,11 +34,11 @@ footer {
 }
 
 .headings h2 {
-  font-size: 60px;
+  font-size: 50px;
 }
 .headings h1 {
   color: rgb(166, 43, 35);
-  font-size: 55px;
+  font-size: 35px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -46,7 +46,9 @@ footer {
 .headings {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+
+
 }
 
 ul {
@@ -78,16 +80,7 @@ nav li a {
   letter-spacing: 2px;
 }
 
-/* .btn {
-  border-radius: 36px;
-  background: #f68c7e;
-  color: aliceblue;
-}
 
-.btn:hover {
-  transition: 0.3s ease-in;
-  background: #f45d48;
-} */
 form h2 {
   font-size: 1.4em;
   font-weight: 900;
@@ -101,7 +94,7 @@ form {
   padding: 30px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  background: rgb(158, 39, 39);
+  background: rgb(48, 46, 46);
 }
 
 .addForm {
@@ -156,10 +149,14 @@ button:hover {
   cursor: pointer;
 }
 .error {
-  color: #bb1d1d;
-  margin: 10px 2px;
-  font-size: 0.8em;
+  color: #db0b0b;
+  margin: 4px 2px;
+  font-size: 0.6em;
   font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 12px;
+
+
 }
 
 span {
@@ -192,6 +189,7 @@ header .btn {
   display: inline-block;
   font-size: 0.8em;
 }
+
 .cards {
   display: flex;
   margin: 30px;
@@ -246,12 +244,12 @@ footer {
   align-items: center;
   margin-left: 250px;
   flex-direction: row;
-  width: 70%;
+  width: 85%;
 }
 
 img {
-  width: 450px;
-  padding-left: 50px;
+  width: 600px;
+  /* padding-left: 50px; */
 }
 
 .hoverBtn:hover {

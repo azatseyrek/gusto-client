@@ -14,10 +14,11 @@ export class Actor {
   ownerId: number
   @Column()
   ownerName: string
-  @Column('boolean', {default: false})
-  share : boolean
-  @Column({default: 0})
+  @Column('boolean', { default: false })
+  share: boolean
+  @Column({ default: 1 })
   likeCount: number
-  
-  
+  @Column({ default: 0 })
+  likes: string
+
 }

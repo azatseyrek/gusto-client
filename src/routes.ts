@@ -8,7 +8,8 @@ import { AuthMiddleWare } from "./middleware/auth.middleware";
 
 import { CreateActor, DeleteActor, Actors, UpdateActor, GetMyActors, GetSharedActors } from './controller/actor.controller';
 import { CreateMovie, DeleteMovie, GetMyMovies, GetSharedMovies, Movies, UpdateMovie} from './controller/movie.controller';
-import { AddLike} from "./controller/like.controller";
+import { AddActorLike, AddLike} from "./controller/like.controller";
+import { CreateActorReview, GetActorCommentReview } from './controller/actorreview.controller';
 
 
 export const routes = (router: Router) => {
@@ -51,10 +52,14 @@ export const routes = (router: Router) => {
 
   // Like
   router.post("/addlike", AuthMiddleWare, AddLike);
+  router.post("/addactorlike", AuthMiddleWare, AddActorLike);
+  
 
   // Review
   router.post("/addmoviereview", AuthMiddleWare, CreateReview)
   router.get("/getmoviereview/:id", AuthMiddleWare, GetCommentReview)
+  router.post("/addactorreview", AuthMiddleWare, CreateActorReview)
+  router.get("/getactorreview/:id", AuthMiddleWare, GetActorCommentReview)
 
 
 
