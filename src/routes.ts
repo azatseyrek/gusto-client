@@ -1,3 +1,4 @@
+import { CreateReview, GetCommentReview } from './controller/moviereview.controller';
 import { Router } from "express";
 
 import { Login, Register, AuthanticatedUser, Logout, UpdateInfo, } from "./controller/auth.controller";
@@ -50,6 +51,10 @@ export const routes = (router: Router) => {
 
   // Like
   router.post("/addlike", AuthMiddleWare, AddLike);
+
+  // Review
+  router.post("/addmoviereview", AuthMiddleWare, CreateReview)
+  router.get("/getmoviereview/:id", AuthMiddleWare, GetCommentReview)
 
 
 

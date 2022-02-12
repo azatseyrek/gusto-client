@@ -16,8 +16,10 @@ const MovieList = () => {
         });
     };
     getSharedMovies();
-    console.log();
+
   }, []);
+
+
 
   return (
     <div className="cards_container">

@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 
 import { routes } from "./routes";
 import { Movie } from "./entity/movie.entity";
+import { MovieReviev } from "./entity/movieReview.entity";
+
 
 
 createConnection().then(async(connection) => {
@@ -52,12 +54,26 @@ createConnection().then(async(connection) => {
 
 
   
-  // const repository = getManager().getRepository(Movie);
-  // const movies = await repository.find({ where: {movielist: user.movielist.id} });
+  // const repository = getManager().getRepository(MovieReviev);
+  // const movies = await repository.findOne(1,{ relations:["movie"] });
 
   // console.log(movies);
 
+   
+  // const repository = getManager().getRepository(Movie);
+  // const movies = await repository.findOne(123);
+  // console.log(movies.);
+  
 
+  // @JoinColumn()
+  // @ManyToOne(()=> Movie, movie => movie.id)
+  // movie: Movie
+
+
+ // from movieList
+   // @OneToMany(() => Movie, movie => movie.movielist)
+    // @JoinColumn()
+    // movies: Movie[];
 
 
   //calling all routes

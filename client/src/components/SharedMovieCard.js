@@ -1,11 +1,15 @@
 import axios from "axios";
-import React, { useContext } from "react";
+
+import React, { useContext, useEffect, useState } from "react";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineInsertComment } from "react-icons/md";
 import { myContext } from "../pages/Context";
+import Modal from "./Modal";
 
 const SharedMovieCard = (props) => {
   const user = useContext(myContext)
+  const [openModal, setOpenModal] = useState(false)
+
 
 
   const like = async () => {
@@ -24,14 +28,12 @@ const SharedMovieCard = (props) => {
         }
       )
       .then((res) => {
-
-        console.log(res.data)
         window.location.href="/movielist"
       });
 
-
-
   };
+
+
 
   return (
     <ul className="cards">
@@ -41,12 +43,15 @@ const SharedMovieCard = (props) => {
         <hr />
         <h4>{props.movie_name}</h4>
         <div className="cardBtn">
+        
           <button onClick={like}>
             <FcLike /> <span>{props.likeCount}</span>{" "}
           </button>
-          <button>
+         
+          <button className="openModalBtn" onClick={()=>{setOpenModal(true)}}>
             <MdOutlineInsertComment />
           </button>
+       {openModal && <Modal id={props.id} closeModal={setOpenModal}/>}
         </div>
       </li>
     </ul>

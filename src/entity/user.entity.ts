@@ -7,7 +7,7 @@ import {
   // OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { MovieList } from "./movieList.entity";
+// import { MovieList } from "./movieList.entity";
 
 
 
@@ -29,9 +29,10 @@ export class User {
   shareActorList : boolean
   
 
-  // @OneToOne(() => MovieList)
-  //   @JoinColumn()
-  //   movielist: MovieList;
+  // from movieList
+   // @OneToMany(() => Movie, movie => movie.movielist)
+    // @JoinColumn()
+    // movies: Movie[];
  
 
   
