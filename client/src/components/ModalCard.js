@@ -6,7 +6,7 @@ const ModalCard = ({movieComment, id}) => {
     <div className='commentContainer'>
 
   {movieComment.map((data)=> (
-    <div>
+    <div key={data.id}>
     <p> <span className='commenter'> {data.commenterName} -  </span>{data.review}</p>
     <hr />
     </div>

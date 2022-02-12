@@ -9,6 +9,22 @@ function Modal({ closeModal, id }) {
 
   const addComment = async (e) => {
     e.preventDefault();
+    await axios
+    .get(`http://localhost:4000/getmoviereview/${id}`, {
+      withCredentials: true,
+    })
+    .then(
+      (res) => {
+        if (res.data) {
+          // console.log(res.data);
+          setMovieComment(res.data);
+        }
+      },
+      () => {
+        console.log("Failure");
+      }
+    );
+   
 
     await axios
       .post(
@@ -31,26 +47,29 @@ function Modal({ closeModal, id }) {
           console.log("Failure");
         }
       );
-
-    await axios
-      .get(`http://localhost:4000/getmoviereview/${id}`, {
-        withCredentials: true,
-      })
-      .then(
-        (res) => {
-          if (res.data) {
-            // console.log(res.data);
-            setMovieComment(res.data);
-          }
-        },
-        () => {
-          console.log("Failure");
-        }
-      );
   };
 
-  
+  const readComment = async (e) => {
+    e.preventDefault();
 
+    await axios
+    .get(`http://localhost:4000/getmoviereview/${id}`, {
+      withCredentials: true,
+    })
+    .then(
+      (res) => {
+        if (res.data) {
+          // console.log(res.data);
+          setMovieComment(res.data);
+        }
+      },
+      () => {
+        console.log("Failure");
+      }
+    );
+
+   
+  };
 
   return (
     <div className="modalBackground">
@@ -70,6 +89,9 @@ function Modal({ closeModal, id }) {
             <button onClick={() => closeModal(false)} className="modalCloseBtn">
               Close
             </button>
+            <button onClick={readComment} className="modalReadBtn">
+              Read
+            </button>
             <button onClick={addComment} className="modalAddBtn">
               Add
             </button>
@@ -77,7 +99,6 @@ function Modal({ closeModal, id }) {
         </div>
 
         <div className="body">
-        
           <ModalCard movieComment={movieComment} id={id} />
         </div>
       </div>

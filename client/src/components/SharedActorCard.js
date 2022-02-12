@@ -15,7 +15,7 @@ const SharedActorCard = (props) => {
             <button>
               <FcLike className="likeIcon" /> <span>0</span>{" "}
             </button>
-            <button>
+            <button >
               <MdOutlineInsertComment />
             </button>
           </div>
