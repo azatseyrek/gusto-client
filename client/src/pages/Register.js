@@ -61,8 +61,15 @@ export default function Register() {
       .then(
         (res) => {
           if (res.data === "success") {
-            // window.location.href = "/login"
-            console.log(res);
+
+            setError("Registration successful. You are redirected to the user login page. Please wait...")
+            const timeout = setTimeout(redirectLogin, 3000);
+
+            function redirectLogin() {
+              return (window.location.href = "/login");
+
+            }
+
           } else {
             // console.log("user is allready registered");
             setError("user is allready registered");
@@ -127,6 +134,3 @@ export default function Register() {
     </div>
   );
 }
-
-
-// 3116837171938406 facebookid

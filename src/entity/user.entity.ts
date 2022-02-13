@@ -16,7 +16,7 @@ export class User {
   email: string;
   @Column()
   password: string;
-  @Column('boolean', {default: true})
+  @Column('boolean', {default: false})
   shareMovieList : boolean
   @Column('boolean', {default: false})
   shareActorList : boolean

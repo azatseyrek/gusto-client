@@ -12,8 +12,8 @@ export const AuthMiddleWare = async (
 ) => {
   try {
     const jwt = req.cookies["jwt"];
-
-    const payload: any = verify(jwt, process.env.SECRET_KEY); //payload gives us only id because we defined only id in the token
+    //payload gives us only id because we defined only id in the token
+    const payload: any = verify(jwt, process.env.SECRET_KEY);
 
     if (!payload) {
       return res.status(401).send({ message: "unauthanticated" });
@@ -23,7 +23,7 @@ export const AuthMiddleWare = async (
 
     const { password, ...user } = await repository.findOne(payload.id);
 
-    // req.user = user -------> without typescript it will work. ts doesnt allow to use this syntax
+    // req.user = user ----> without typescript it will work. ts doesnt allow to use this syntax
 
     req["user"] = user;
 

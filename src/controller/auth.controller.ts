@@ -73,8 +73,12 @@ export const Login = async (req: Request, res: Response) => {
 
 // AuthanticatedUser Start Point
 export const AuthanticatedUser = async (req: Request, res: Response) => {
+  try{
   const { password, ...user } = req["user"];
-  res.send(user);
+  res.send(user)
+  }catch(err) {
+    res.send("there is no user logedin")
+  }
 };
 
 export const UpdateInfo = async (req: Request, res: Response) => {

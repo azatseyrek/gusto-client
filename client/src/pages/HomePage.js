@@ -6,7 +6,7 @@ const HomePage = () => {
     <>
       <div className="vectorContainer">
         <div className="headings">
-          <h2 className="wellcometext">Wellcome to</h2>
+          <h2 className="wellcometext">Welcome to</h2>
 
           <h1>LISTFLIX</h1>
         </div>

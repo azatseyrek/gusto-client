@@ -95,14 +95,15 @@ form h2 {
 
 .addForm {
   height: 180px;
-  width: 80%;
+  width: 50%;
   margin-bottom: 30px;
-  background-color: #832424;
+  /* background-color: #837d7d; */
   padding: 0 20px;
   border-radius: 20px;
   margin-left: 20px;
-
-
+  opacity: 0.8;
+  border: none;
+  
 }
 form label {
   margin: 2px;
@@ -134,7 +135,7 @@ label {
 button {
   margin-top: 30px;
   border-radius: 36px;
-  background: #040303;
+  background: #807c7c;
   color: white;
   border: 0;
   text-transform: uppercase;
@@ -145,12 +146,12 @@ button {
   letter-spacing: 2px;
 }
 button:hover {
-  background-color: #9d9c9c;
+  background-color: #c79435;
   transition: ease-in 0.05s;
   cursor: pointer;
 }
 .error {
-  color: #db0b0b;
+  color: #aaac33;
   margin: 4px 2px;
   font-size: 0.8em;
   font-weight: bold;
@@ -260,9 +261,11 @@ img {
 @media screen and (max-width: 992px) {
   .vectorContainer {
     flex-direction: column;
+    width: auto;
+   margin-left: 40px;
   }
   .vectorContainer .vector img {
-    width: 600px;
+    width: 400px;
     margin-left: auto;
     align-items: center;
   }
@@ -303,6 +306,7 @@ img {
   padding-top: 0;
   display: flex;
   justify-content: flex-end;
+
 }
 
 .signup_container, .login_container {

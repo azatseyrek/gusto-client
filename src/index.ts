@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 
 import { routes } from "./routes";
 
+// DB Connection
 createConnection().then(async (connection) => {
   const app = express();
 
