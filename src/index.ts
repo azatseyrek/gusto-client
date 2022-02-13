@@ -1,15 +1,11 @@
-import express, { Request, Response } from "express";
-import {createConnection, getManager} from "typeorm";
+import express from "express";
 import cors from "cors";
+import { createConnection } from "typeorm";
 import cookieParser from "cookie-parser";
 
 import { routes } from "./routes";
-import { Movie } from "./entity/movie.entity";
-import { MovieReviev } from "./entity/movieReview.entity";
 
-
-
-createConnection().then(async(connection) => {
+createConnection().then(async (connection) => {
   const app = express();
 
   app.use(express.json());
@@ -20,61 +16,6 @@ createConnection().then(async(connection) => {
       origin: "http://localhost:3000",
     })
   )
-
-
-
-  
-  
-  // const movie1 = new Movie();
-  // movie1.moviePhotoUrl = "measasa.jpg";
-  // movie1.movie_name = "kolpacino";
-  // await connection.manager.save(movie1);
-  
-  // const movie2 = new Movie();
-  // movie2.moviePhotoUrl = "asaaaad.jpg";
-  // movie2.movie_name = "marakes baba";
-  // await connection.manager.save(movie2);
-  
-  // const movieList = new MovieList();
-  // movieList.movies = [movie1, movie2]
-  // await connection.manager.save(movieList);
-  
-  // const user = new User();
-  // user.first_name = "azat";
-  // user.last_name = "seyrek";
-  // user.password = "123123"
-  // user.email = "aseyrek@hotmail.com"
-  // user.movielist = movieList
-  // await connection.manager.save(user);
-  
-  // const userRepository = getManager().getRepository(Movie);
-  // // const ownerId = 19
-  // const myMovies = await userRepository.find({ownerId:21})
-  // console.log(myMovies)
-
-
-  
-  // const repository = getManager().getRepository(MovieReviev);
-  // const movies = await repository.findOne(1,{ relations:["movie"] });
-
-  // console.log(movies);
-
-   
-  // const repository = getManager().getRepository(Movie);
-  // const movies = await repository.findOne(123);
-  // console.log(movies.);
-  
-
-  // @JoinColumn()
-  // @ManyToOne(()=> Movie, movie => movie.id)
-  // movie: Movie
-
-
- // from movieList
-   // @OneToMany(() => Movie, movie => movie.movielist)
-    // @JoinColumn()
-    // movies: Movie[];
-
 
   //calling all routes
   routes(app);

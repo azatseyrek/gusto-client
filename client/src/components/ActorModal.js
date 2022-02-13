@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/modal.css";
 import ActorModalCard from "./ActorModalCard";
 
@@ -10,21 +10,20 @@ function ActorModal({ closeModal, id }) {
   const addComment = async (e) => {
     e.preventDefault();
     await axios
-    .get(`http://localhost:4000/getactorreview/${id}`, {
-      withCredentials: true,
-    })
-    .then(
-      (res) => {
-        if (res.data) {
-          // console.log(res.data);
-          setActorComment(res.data);
+      .get(`http://localhost:4000/getactorreview/${id}`, {
+        withCredentials: true,
+      })
+      .then(
+        (res) => {
+          if (res.data) {
+            // console.log(res.data);
+            setActorComment(res.data);
+          }
+        },
+        () => {
+          console.log("Failure");
         }
-      },
-      () => {
-        console.log("Failure");
-      }
-    );
-   
+      );
 
     await axios
       .post(
@@ -53,22 +52,20 @@ function ActorModal({ closeModal, id }) {
     e.preventDefault();
 
     await axios
-    .get(`http://localhost:4000/getactorreview/${id}`, {
-      withCredentials: true,
-    })
-    .then(
-      (res) => {
-        if (res.data) {
-          // console.log(res.data);
-          setActorComment(res.data);
+      .get(`http://localhost:4000/getactorreview/${id}`, {
+        withCredentials: true,
+      })
+      .then(
+        (res) => {
+          if (res.data) {
+            // console.log(res.data);
+            setActorComment(res.data);
+          }
+        },
+        () => {
+          console.log("Failure");
         }
-      },
-      () => {
-        console.log("Failure");
-      }
-    );
-
-   
+      );
   };
 
   return (

@@ -10,14 +10,14 @@ const ProfileMovieCard = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        window.location.href= "/profile"
+        window.location.href = "/profile";
       });
   };
 
   const shareMovie = async () => {
     const id = props.id;
     console.log(id);
-   await axios
+    await axios
       .put(
         `http://localhost:4000/movies/${id}`,
         {
@@ -28,12 +28,10 @@ const ProfileMovieCard = (props) => {
         }
       )
       .then((res) => {
-
         console.log("succes");
-        window.location.href= "/profile"
+        window.location.href = "/profile";
       });
   };
-
 
   return (
     <ul className="cards">

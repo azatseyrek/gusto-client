@@ -12,7 +12,7 @@ dotenv.config();
 export const Register = async (req: Request, res: Response) => {
   const body = req.body;
 
-// check validation error
+  // check validation error
   const { error } = RegisterValidation.validate(body);
 
   if (error) {
@@ -79,17 +79,17 @@ export const AuthanticatedUser = async (req: Request, res: Response) => {
 
 export const UpdateInfo = async (req: Request, res: Response) => {
   const user = req["user"];
-try {
-  const repository = getManager().getRepository(User);
+  try {
+    const repository = getManager().getRepository(User);
 
-  await repository.update(user.id, req.body);
+    await repository.update(user.id, req.body);
 
-  const { password, ...data } = await repository.findOne(user.id)
+    const { password, ...data } = await repository.findOne(user.id)
 
-  res.status(201).send(data)
-} catch (err) {
-  res.send(err)
-}
+    res.status(201).send(data)
+  } catch (err) {
+    res.send(err)
+  }
 };
 
 export const Logout = async (req: Request, res: Response) => {

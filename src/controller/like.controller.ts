@@ -1,11 +1,8 @@
-import { pushToDBArray, deleteItemFromDBArray, countDBArray, serializeArray } from './../helpers/db';
-import { Request, Response } from "express";
+import { pushToDBArray, countDBArray, serializeArray } from './../helpers/db';
 import { getManager } from "typeorm";
+import { Request, Response } from "express";
 import { Movie } from "../entity/movie.entity";
 import { Actor } from '../entity/actor.entity';
-
-
-
 
 export const AddLike = async (req: Request, res: Response) => {
     const { user_id, movie_id } = req.body
@@ -23,10 +20,7 @@ export const AddLike = async (req: Request, res: Response) => {
         movie.likeCount = countDBArray(movie.likes)
         await repository.update(movie_id, { likeCount: movie.likeCount })
     }
-
-
 };
-
 
 export const AddActorLike = async (req: Request, res: Response) => {
     const { user_id, actor_id } = req.body
@@ -44,8 +38,6 @@ export const AddActorLike = async (req: Request, res: Response) => {
         actor.likeCount = countDBArray(actor.likes)
         await repository.update(actor_id, { likeCount: actor.likeCount })
     }
-
-
 };
 
 

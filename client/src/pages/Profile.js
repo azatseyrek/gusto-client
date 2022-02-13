@@ -77,7 +77,7 @@ const Profile = () => {
       .then(
         (res) => {
           if (res.data === "success") {
-            getMyActors()
+            getMyActors();
           }
         },
         () => {
@@ -88,8 +88,6 @@ const Profile = () => {
 
   useEffect(() => {
     getMyMovies();
-    
-
   }, []);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/modal.css";
 import MovieModalCard from "./MovieModalCard";
 
@@ -10,21 +10,20 @@ function MovieModal({ closeModal, id }) {
   const addComment = async (e) => {
     e.preventDefault();
     await axios
-    .get(`http://localhost:4000/getmoviereview/${id}`, {
-      withCredentials: true,
-    })
-    .then(
-      (res) => {
-        if (res.data) {
-          // console.log(res.data);
-          setMovieComment(res.data);
+      .get(`http://localhost:4000/getmoviereview/${id}`, {
+        withCredentials: true,
+      })
+      .then(
+        (res) => {
+          if (res.data) {
+            // console.log(res.data);
+            setMovieComment(res.data);
+          }
+        },
+        () => {
+          console.log("Failure");
         }
-      },
-      () => {
-        console.log("Failure");
-      }
-    );
-   
+      );
 
     await axios
       .post(
@@ -53,22 +52,20 @@ function MovieModal({ closeModal, id }) {
     e.preventDefault();
 
     await axios
-    .get(`http://localhost:4000/getmoviereview/${id}`, {
-      withCredentials: true,
-    })
-    .then(
-      (res) => {
-        if (res.data) {
-          // console.log(res.data);
-          setMovieComment(res.data);
+      .get(`http://localhost:4000/getmoviereview/${id}`, {
+        withCredentials: true,
+      })
+      .then(
+        (res) => {
+          if (res.data) {
+            // console.log(res.data);
+            setMovieComment(res.data);
+          }
+        },
+        () => {
+          console.log("Failure");
         }
-      },
-      () => {
-        console.log("Failure");
-      }
-    );
-
-   
+      );
   };
 
   return (

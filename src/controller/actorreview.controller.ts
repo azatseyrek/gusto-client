@@ -6,7 +6,7 @@ import { ActorReviev } from '../entity/actorReview.entity';
 
 
 export const CreateActorReview = async (req: Request, res: Response) => {
-  const {...body} = req.body
+  const { ...body } = req.body
   try {
     const repository = getManager().getRepository(ActorReviev);
 
@@ -23,12 +23,12 @@ export const CreateActorReview = async (req: Request, res: Response) => {
 
 export const GetActorCommentReview = async (req: Request, res: Response) => {
 
-const id = Number(req.params.id)
+  const id = Number(req.params.id)
 
   try {
     const repository = getManager().getRepository(ActorReviev);
 
-    const reviews = await repository.find( {actorId:id })
+    const reviews = await repository.find({ actorId: id })
     res.status(200).send(reviews)
   } catch (err) {
     res.send(err)
