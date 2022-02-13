@@ -10,10 +10,12 @@ const Context = (props) => {
       await Axios.get("http://localhost:4000/user", {
         withCredentials: true,
       }).then((res) => {
+
         setUser(res.data);
+        
       });
     } catch (error) {
-      console.log(error);
+      console.log("there is no user loged in");
     }
   }, []);
 

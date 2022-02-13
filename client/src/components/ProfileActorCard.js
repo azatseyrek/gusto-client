@@ -35,7 +35,7 @@ const ProfileActorCard = (props) => {
   return (
     <ul className="cards">
       <li className="card">
-        <img src={require("../images/film.png")} alt="actorlogo" />
+        <img src={require("../images/movstar.png")} alt="actorlogo" />
 
         <hr />
         <h4>{props.actor_name}</h4>

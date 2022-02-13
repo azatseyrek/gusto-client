@@ -82,7 +82,8 @@ form h2 {
   padding-bottom: 20px;
   padding-top: 10px;
 }
-form {
+.form {
+
   width: 260px;
   height: 400px;
   margin: 0 auto;
@@ -94,10 +95,14 @@ form {
 
 .addForm {
   height: 180px;
-  width: 30%;
+  width: 80%;
   margin-bottom: 30px;
   background-color: #832424;
   padding: 0 20px;
+  border-radius: 20px;
+  margin-left: 20px;
+
+
 }
 form label {
   margin: 2px;
@@ -107,6 +112,7 @@ form label {
   margin-top: 15px;
   width: 80px;
   height: 35px;
+
 }
 
 form button {
@@ -146,7 +152,7 @@ button:hover {
 .error {
   color: #db0b0b;
   margin: 4px 2px;
-  font-size: 0.6em;
+  font-size: 0.8em;
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 12px;
@@ -297,4 +303,15 @@ img {
   padding-top: 0;
   display: flex;
   justify-content: flex-end;
+}
+
+.signup_container, .login_container {
+  width: 80%;
+display: flex;
+}
+
+.signup_form_container, .login_form_container {
+  width: 400px;
+  margin-left: 50%;
+ 
 }

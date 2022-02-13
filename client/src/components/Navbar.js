@@ -4,7 +4,8 @@ import { myContext } from "../pages/Context";
 import { logout } from "../utility/helper";
 
 const Navbar = () => {
-  const user = useContext(myContext);
+ const user = useContext(myContext);
+
 
   return (
     <nav>

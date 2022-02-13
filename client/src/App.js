@@ -9,35 +9,33 @@ import MovieList from "./pages/MovieList";
 
 import Navbar from "./components/Navbar";
 
-
-import { myContext } from "./pages/Context";
 import "../src/styles/main.css";
+import { myContext } from "./pages/Context";
 
 function App() {
-  const user = useContext(myContext)
+  const user = useContext(myContext);
   return (
     <BrowserRouter>
-
       <Navbar />
       <Routes>
         <Route index element={<HomePage />} />
+         
         {user ? (
           <>
 
-            <Route path="profile" element={<Profile />} />
-            <Route path="actorlist" element={<ActorList />} />
-            <Route path="movielist" element={<MovieList />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="actorlist" element={<ActorList />} />
+              <Route path="movielist" element={<MovieList />} />
+             
           </>
-        ) : (
+        )  : (
           <>
+           
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </>
         )}
-
       </Routes>
-
-
     </BrowserRouter>
   );
 }

@@ -30,7 +30,7 @@ const SharedActorCard = ({ id, owner_name, actor_name, likeCount }) => {
   return (
     <ul className="cards">
       <li className="sharedCard">
-        <img src={require("../images/film.png")} alt="logo" />
+        <img src={require("../images/movstar.png")} alt="logo" />
         <h6>{owner_name} shared an actor</h6>
         <hr />
         <h4>{actor_name}</h4>
