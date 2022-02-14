@@ -10,7 +10,7 @@ function MovieModal({ closeModal, id }) {
   const addComment = async (e) => {
     e.preventDefault();
     await axios
-      .get(`http://localhost:4000/getmoviereview/${id}`, {
+      .get(`https://gusto-movie-backend.herokuapp.com/getmoviereview/${id}`, {
         withCredentials: true,
       })
       .then(
@@ -27,7 +27,7 @@ function MovieModal({ closeModal, id }) {
 
     await axios
       .post(
-        "http://localhost:4000/addmoviereview",
+        "https://gusto-movie-backend.herokuapp.com/addmoviereview",
         {
           review: comment,
           movieId: id,
@@ -52,7 +52,7 @@ function MovieModal({ closeModal, id }) {
     e.preventDefault();
 
     await axios
-      .get(`http://localhost:4000/getmoviereview/${id}`, {
+      .get(`https://gusto-movie-backend.herokuapp.com/getmoviereview/${id}`, {
         withCredentials: true,
       })
       .then(

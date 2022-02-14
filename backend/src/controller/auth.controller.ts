@@ -50,7 +50,7 @@ export const Login = async (req: Request, res: Response) => {
         .status(400)
         .send({ message: "Password or Email is not correct!" });
     } else {
-      //  crearte jwt start point
+      //  creating jwt start point
       const payload = {
         id: user.id,
       };
@@ -62,6 +62,7 @@ export const Login = async (req: Request, res: Response) => {
       res.cookie("jwt", token, {
         httpOnly: true,
         maxAge: 60 * 60 * 1000, //miliseconds
+        sameSite: "none"
       });
       const { password, ...data } = user;
       res.status(200).send("success");

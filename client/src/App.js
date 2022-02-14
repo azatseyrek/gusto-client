@@ -13,7 +13,7 @@ import "../src/styles/main.css";
 import { myContext } from "./pages/Context";
 
 function App() {
-  const user = useContext(myContext);
+  const {user} = useContext(myContext);
   return (
     <BrowserRouter>
       <Navbar />

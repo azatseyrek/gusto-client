@@ -2,18 +2,27 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineInsertComment } from "react-icons/md";
+
+import { useNavigate } from "react-router-dom";
+
 import { myContext } from "../pages/Context";
 import ActorModal from "./ActorModal";
 
-
-const SharedActorCard = ({ id, owner_name, actor_name, likeCount }) => {
-  const user = useContext(myContext);
+const SharedActorCard = ({
+  id,
+  owner_name,
+  actor_name,
+  likeCount,
+  getActors,
+}) => {
+  const { user } = useContext(myContext);
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
 
   const like = async () => {
     await axios
       .post(
-        "http://localhost:4000/addactorlike",
+        "https://gusto-movie-backend.herokuapp.com/addactorlike",
         {
           user_id: user.id,
           actor_id: id, //?
@@ -23,7 +32,8 @@ const SharedActorCard = ({ id, owner_name, actor_name, likeCount }) => {
         }
       )
       .then((res) => {
-        window.location.href = "/actorlist";
+        navigate("/actorlist");
+        getActors();
       });
   };
 

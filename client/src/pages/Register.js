@@ -14,7 +14,7 @@ export default function Register() {
 
     await axios
       .post(
-        "http://localhost:4000/register",
+        "https://gusto-movie-backend.herokuapp.com/register",
         {
           first_name,
           last_name,
@@ -47,7 +47,7 @@ export default function Register() {
 
     await axios
       .post(
-        "http://localhost:4000/register",
+        "https://gusto-movie-backend.herokuapp.com/register",
         {
           first_name: googleUser.givenName,
           last_name: googleUser.familyName,

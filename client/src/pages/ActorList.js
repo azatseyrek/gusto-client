@@ -5,16 +5,17 @@ import SharedActorCard from "../components/SharedActorCard";
 const ActorList = () => {
   const [sharedActors, setSharedActors] = useState([]);
 
+  const getSharedActors = () => {
+    axios
+      .get("https://gusto-movie-backend.herokuapp.com/sharedactors", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setSharedActors(res.data);
+      });
+  };
+
   useEffect(() => {
-    const getSharedActors = () => {
-      axios
-        .get("http://localhost:4000/sharedactors", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setSharedActors(res.data);
-        });
-    };
     getSharedActors();
   }, []);
 
@@ -27,6 +28,7 @@ const ActorList = () => {
           actor_name={data.actor_name}
           owner_name={data.ownerName}
           likeCount={data.likeCount}
+          getActors={getSharedActors}
         />
       ))}
     </div>

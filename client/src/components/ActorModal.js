@@ -10,7 +10,7 @@ function ActorModal({ closeModal, id }) {
   const addComment = async (e) => {
     e.preventDefault();
     await axios
-      .get(`http://localhost:4000/getactorreview/${id}`, {
+      .get(`https://gusto-movie-backend.herokuapp.com/getactorreview/${id}`, {
         withCredentials: true,
       })
       .then(
@@ -27,7 +27,7 @@ function ActorModal({ closeModal, id }) {
 
     await axios
       .post(
-        "http://localhost:4000/addactorreview",
+        "https://gusto-movie-backend.herokuapp.com/addactorreview",
         {
           review: comment,
           actorId: id,
@@ -52,7 +52,7 @@ function ActorModal({ closeModal, id }) {
     e.preventDefault();
 
     await axios
-      .get(`http://localhost:4000/getactorreview/${id}`, {
+      .get(`https://gusto-movie-backend.herokuapp.com/getactorreview/${id}`, {
         withCredentials: true,
       })
       .then(

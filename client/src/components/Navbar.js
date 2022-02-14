@@ -1,11 +1,26 @@
-import { Link } from "react-router-dom";
 import React, { useContext } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
 import { myContext } from "../pages/Context";
-import { logout } from "../utility/helper";
 
 const Navbar = () => {
- const user = useContext(myContext);
+  const { user, updateUser } = useContext(myContext);
+  const navigate = useNavigate();
 
+  const logout = () => {
+    axios
+      .get("https://gusto-movie-backend.herokuapp.com/logout", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/");
+        updateUser();
+      });
+  };
+
+  console.log(user);
 
   return (
     <nav>

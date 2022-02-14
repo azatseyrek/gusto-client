@@ -1,16 +1,20 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 
 const ProfileActorCard = (props) => {
+  const navigate = useNavigate();
+
   const deleteActor = () => {
     const id = props.id;
 
     axios
-      .delete(`http://localhost:4000/actors/${id}`, {
+      .delete(`https://gusto-movie-backend.herokuapp.com/actors/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
-        window.location.href = "/profile";
+        navigate("/profile")
+        props.getActors();
       });
   };
 
@@ -19,7 +23,7 @@ const ProfileActorCard = (props) => {
     console.log(id);
     axios
       .put(
-        `http://localhost:4000/actors/${id}`,
+        `https://gusto-movie-backend.herokuapp.com/actors/${id}`,
         {
           share: true,
         },
@@ -28,7 +32,8 @@ const ProfileActorCard = (props) => {
         }
       )
       .then((res) => {
-        window.location.href = "/profile";
+        navigate("/profile")
+        props.getActors();
       });
   };
 

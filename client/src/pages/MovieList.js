@@ -5,16 +5,17 @@ import SharedMovieCard from "../components/SharedMovieCard";
 const MovieList = () => {
   const [sharedMovies, setSharedMovies] = useState([]);
 
+  const getSharedMovies = async () => {
+    await axios
+      .get("https://gusto-movie-backend.herokuapp.com/sharedmovies", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setSharedMovies(res.data);
+      });
+  };
+
   useEffect(() => {
-    const getSharedMovies = async () => {
-      await axios
-        .get("http://localhost:4000/sharedmovies", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setSharedMovies(res.data);
-        });
-    };
     getSharedMovies();
   }, []);
 
@@ -27,6 +28,7 @@ const MovieList = () => {
           movie_name={data.movie_name}
           owner_name={data.ownerName}
           likeCount={data.likeCount}
+          getMovies={getSharedMovies}
         />
       ))}
     </div>

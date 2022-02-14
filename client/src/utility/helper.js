@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const logout = () => {
     
-    axios.get("http://localhost:4000/logout", { withCredentials: true }).then((res) => {
+    axios.get("https://gusto-movie-backend.herokuapp.com/logout", { withCredentials: true }).then((res) => {
         window.location.href = "/"
     })
 }

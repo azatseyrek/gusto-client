@@ -1,19 +1,28 @@
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import React, { useContext, useState } from "react";
-import { FcLike } from "react-icons/fc";
 import { MdOutlineInsertComment } from "react-icons/md";
+import { FcLike } from "react-icons/fc";
+
 import { myContext } from "../pages/Context";
 import MovieModal from "./MovieModal";
 
-const SharedMovieCard = ({ id, owner_name, movie_name, likeCount }) => {
-  const user = useContext(myContext);
+const SharedMovieCard = ({
+  id,
+  owner_name,
+  movie_name,
+  likeCount,
+  getMovies,
+}) => {
+  const { user } = useContext(myContext);
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
 
   const like = async () => {
     await axios
       .post(
-        "http://localhost:4000/addlike",
+        "https://gusto-movie-backend.herokuapp.com/addlike",
         {
           user_id: user.id,
           movie_id: id,
@@ -23,7 +32,8 @@ const SharedMovieCard = ({ id, owner_name, movie_name, likeCount }) => {
         }
       )
       .then((res) => {
-        window.location.href = "/movielist";
+        navigate("/movielist");
+        getMovies();
       });
   };
 

@@ -5,7 +5,7 @@ import ProfileMovieCard from "../components/ProfileMovieCard";
 import { myContext } from "./Context";
 
 const Profile = () => {
-  const user = useContext(myContext);
+  const { user } = useContext(myContext);
 
   const movieInputRef = useRef();
   const actorInputRef = useRef();
@@ -15,7 +15,7 @@ const Profile = () => {
 
   const getMyMovies = async () => {
     await axios
-      .get("http://localhost:4000/mymovies", {
+      .get("https://gusto-movie-backend.herokuapp.com/mymovies", {
         withCredentials: true,
       })
       .then((res) => {
@@ -25,7 +25,7 @@ const Profile = () => {
   };
   const getMyActors = async () => {
     await axios
-      .get("http://localhost:4000/myactors", {
+      .get("https://gusto-movie-backend.herokuapp.com/myactors", {
         withCredentials: true,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const Profile = () => {
 
     await axios
       .post(
-        "http://localhost:4000/movies",
+        "https://gusto-movie-backend.herokuapp.com/movies",
         {
           movie_name: movieInputRef.current.value,
           ownerName: user.first_name,
@@ -65,7 +65,7 @@ const Profile = () => {
 
     await axios
       .post(
-        "http://localhost:4000/actors",
+        "https://gusto-movie-backend.herokuapp.com/actors",
         {
           actor_name: actorInputRef.current.value,
           ownerName: user.first_name,
@@ -116,6 +116,7 @@ const Profile = () => {
             id={data.id}
             movie_name={data.movie_name}
             owner_name={data.ownerName}
+            getMovies={getMyMovies}
           />
         ))}
       </div>
@@ -137,6 +138,7 @@ const Profile = () => {
             id={data.id}
             actor_name={data.actor_name}
             owner_name={data.ownerName}
+            getActors={getMyActors}
           />
         ))}
       </div>
