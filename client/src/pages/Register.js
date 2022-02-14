@@ -63,7 +63,7 @@ export default function Register() {
           if (res.data === "success") {
 
             setError("Registration successful. You are redirected to the user login page. Please wait...")
-            const timeout = setTimeout(redirectLogin, 3000);
+            setTimeout(redirectLogin, 3000);
 
             function redirectLogin() {
               return (window.location.href = "/login");
@@ -74,7 +74,7 @@ export default function Register() {
             // console.log("user is allready registered");
             setError("user is allready registered");
 
-            const timeout = setTimeout(redirectLogin, 3000);
+            setTimeout(redirectLogin, 3000);
 
             function redirectLogin() {
               return (window.location.href = "/login");

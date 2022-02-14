@@ -11,7 +11,7 @@ const HomePage = () => {
           <h1>LISTFLIX</h1>
         </div>
         <div className="vector">
-          <img src={require("../images/popcorn.png")} />
+          <img src={require("../images/popcorn.png")} alt="popcorn" />
         </div>
       </div>
       <Footer />

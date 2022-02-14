@@ -80,7 +80,7 @@ function ActorModal({ closeModal, id }) {
             name="comment"
             className="modalInput"
             placeholder="your comment"
-            type="text"
+
           />
           <div className="inputBtnContainer">
             <button onClick={() => closeModal(false)} className="modalCloseBtn">

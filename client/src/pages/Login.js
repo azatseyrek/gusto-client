@@ -91,17 +91,13 @@ export default function Login() {
             "Your Google account is not registered. Please wait, you are being redirected to the registration page..."
           );
 
-          const timeout = setTimeout(redirectLogin, 4000);
+          setTimeout(redirectLogin, 4000);
 
           function redirectLogin() {
             return (window.location.href = "/register");
           }
         }
       );
-  };
-
-  const responseFacebook = (response) => {
-    console.log(response);
   };
 
   return (
