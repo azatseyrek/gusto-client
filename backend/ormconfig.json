@@ -1,8 +1,0 @@
-{
-  "type": "mysql",
-  "url": "mysql://b17f93d532a593:3fcaaff8@eu-cdbr-west-02.cleardb.net/heroku_c660a99696822f6?reconnect=true",
-  "port": 3306,
-  "entities": ["src/entity/*.ts"],
-  "logging": false,
-  "synchronize": true
-}
