@@ -4,7 +4,7 @@ This app is written for the Patika.dev Gusto&RemoteTeam sponsored NodeJs Bootcam
 
 <h1 align="center">⚡ Gusto&RemoteTeam Bootcamp Final Project ⚡</h1>
 
-
+DEMO : <a href="https://gusto-azat-seyrek.netlify.app">Demo Link</a>
 
 <p>This is a movie and actor sharing app built on Nodejs and ReactJS</p>
 
@@ -47,3 +47,6 @@ This app is written for the Patika.dev Gusto&RemoteTeam sponsored NodeJs Bootcam
 
 ![UsersReviews](/screanshots/Comment.png)
 
+
+
+DEMO : <a href="https://gusto-azat-seyrek.netlify.app">Demo Link</a>
