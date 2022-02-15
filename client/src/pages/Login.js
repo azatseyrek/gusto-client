@@ -83,8 +83,17 @@ export default function Login() {
       .then(
         (res) => {
           if (res.data === "success") {
-            // navigate("/");
-            window.location.href="/"
+
+            getUserData()
+            .then(() => {
+              navigate("/");
+            })
+            .catch(() => {
+              navigate("/register");
+            });
+            
+            navigate("/");
+            // window.location.href="/"
           }
         },
         (error) => {
