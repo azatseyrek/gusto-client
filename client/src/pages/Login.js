@@ -83,7 +83,8 @@ export default function Login() {
       .then(
         (res) => {
           if (res.data === "success") {
-            navigate("/");
+            // navigate("/");
+            window.location.href="/"
           }
         },
         (error) => {
